@@ -1,0 +1,45 @@
+.wrap {
+  flex: 1;
+  min-height: calc(100% - 3rem);
+  margin: 1rem 1rem 2rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+
+  h1 {
+    margin: 0 0 1.5rem;
+    padding: 0;
+  }
+
+  form {
+    position: relative;
+    input {
+      width: 100%;
+      padding: 0.5rem 4.5rem 0.5rem 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px 0 0 4px;
+
+      &:focus {
+        outline: 1px solid #bbb;
+      }
+    }
+    .btn-submit {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4.5rem;
+      padding: 0.4rem;
+      vertical-align: top;
+      background: #efefef;
+      border: 1px solid #ddd;
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+
+      &:focus-within {
+        background: #ccc;
+      }
+    }
+  }
+}

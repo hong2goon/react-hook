@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import List from './component/List';
+import './App.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = () => {
+  // 상태값 정의
+  const [todos, setTodos] = useState(['react study']);
+  const [newTodo, setNewTodo] = useState();
+
+  // 함수
+  const changeInputData = (e) => {
+    setNewTodo(e.target.value);
+  }
+
+  const addTodo = (e) => {
+    e.preventDefault();
+    if(newTodo !== undefined) {
+      if(newTodo !== '') {
+        setTodos([...todos, newTodo]);
+        e.target.querySelector('input').value = '';
+        setNewTodo('');
+      }
+    }
+  }
+
+  // 라이프사이클
+  useEffect( 
+    () => {
+      console.log("새로운 내용이 렌더링되었습니다.\n", todos);
+    }, 
+    [todos]
   );
-}
+
+  return (
+    <div className="wrap">
+      <h1>todo 애플리케이션</h1>
+      <form onSubmit={addTodo}>
+        <input type="text" onChange={changeInputData} />
+        <button type="submit" className="btn-submit">할일 추가</button>
+      </form>
+
+      <List todos={todos} />
+    </div>
+  )
+} 
 
 export default App;
