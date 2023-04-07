@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "공부하기",
+      "status": "todo"
+    },
+    {
+      "id": 2,
+      "title": "스터디준비",
+      "status": "todo"
+    },
+    {
+      "id": 3,
+      "title": "알고리즘 공부",
+      "status": "todo"
+    },
+    {
+      "id": 4,
+      "title": "컴퓨터게임",
+      "status": "todo"
+    }
+  ]
+}

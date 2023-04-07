@@ -1,5 +1,6 @@
-const List = ({todos}) => {
-  const todoList = todos.map( (todo, index) => <li key={index}>{todo}</li>);
+const List = ({todos, loading}) => {
+  let todoList = <div>Loading...</div>;
+  if(!loading) todoList = todos.map( (todo, index) => <li key={index}>{todo.title}</li>);
 
   return (
     <ul>
