@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useFetch from './hook/useFetch';
+import Header from './component/Header';
 import List from './component/List';
 import './App.scss';
 
@@ -26,6 +27,18 @@ const App = () => {
     }
   }
 
+  const changeTodoStatus = (id) => {
+    const updateTodos = todos.map(todo => {
+      if(todo.id === +id) {
+        if(todo.status === 'done') todo.status = 'todo';
+        else todo.status = 'done';
+      }
+      return todo;
+    })
+
+    console.log(updateTodos);
+  }
+
   // 라이프사이클 (렌더링 이후)
   useEffect( 
     () => {
@@ -36,13 +49,13 @@ const App = () => {
 
   return (
     <div className="wrap">
-      <h1>todo 애플리케이션</h1>
+      <Header todos={todos} />
       <form onSubmit={addTodo}>
         <input type="text" onChange={changeInputData} />
         <button type="submit" className="btn-submit">할일 추가</button>
       </form>
 
-      <List todos={todos} loading={loading} />
+      <List todos={todos} loading={loading} changeTodoStatus={changeTodoStatus} />
     </div>
   )
 } 

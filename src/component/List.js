@@ -1,6 +1,10 @@
-const List = ({todos, loading}) => {
+import Item from './Item';
+
+const List = ({todos, loading, changeTodoStatus}) => {
   let todoList = <div>Loading...</div>;
-  if(!loading) todoList = todos.map( (todo, index) => <li key={index}>{todo.title}</li>);
+  if(!loading) todoList = todos.map( (todo, index) => 
+    <Item key={index} todo={todo} changeTodoStatus={changeTodoStatus} />
+  );
 
   return (
     <ul>
