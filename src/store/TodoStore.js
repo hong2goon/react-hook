@@ -10,25 +10,13 @@ export const TodoContext = React.createContext();
 const TodoStore = () => {
   // 상태값 정의
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState();
   
   // data fetch
   const loading = useFetch(setTodos, 'http://localhost:4000/todos');
 
   // 함수
-  const changeInputData = (e) => {
-    setNewTodo(e.target.value);
-  }
-
-  const addTodo = (e) => {
-    e.preventDefault();
-    if(newTodo !== undefined) {
-      if(newTodo !== '') {
-        setTodos([...todos, {'id': todos.length + 1, 'title': newTodo, 'status': 'todo'}]);
-        e.target.querySelector('input').value = '';
-        setNewTodo('');
-      }
-    }
+  const addTodo = (newTodo) => {
+    setTodos([...todos, {'id': todos.length + 1, 'title': newTodo, 'status': 'todo'}]);
   }
 
   const changeTodoStatus = (id) => {
@@ -51,7 +39,7 @@ const TodoStore = () => {
 
   return (
     <TodoContext.Provider value={
-      {todos, addTodo, changeInputData, loading, changeTodoStatus}
+      {todos, addTodo, loading, changeTodoStatus}
     }>
       <div className="wrap">
         <Header />
