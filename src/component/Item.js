@@ -5,7 +5,7 @@ const Item = ({todo, changeTodoStatus}) => {
     const id = e.target.dataset.id;
     changeTodoStatus(id);
   }
-
+  console.log(todo);
   const itemClassName = todo.status === 'done' ? 'done' : '';
 
   return (

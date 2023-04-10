@@ -30,13 +30,11 @@ const App = () => {
   const changeTodoStatus = (id) => {
     const updateTodos = todos.map(todo => {
       if(todo.id === +id) {
-        if(todo.status === 'done') todo.status = 'todo';
-        else todo.status = 'done';
+        todo.status === 'done' ? todo.status = 'todo' : todo.status = 'done';
       }
       return todo;
     })
-
-    console.log(updateTodos);
+    setTodos(updateTodos);
   }
 
   // 라이프사이클 (렌더링 이후)
