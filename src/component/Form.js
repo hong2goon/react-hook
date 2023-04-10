@@ -7,8 +7,11 @@ const Form = () => {
 
  const addTodoData = (e) => {
   e.preventDefault();
-  dispatch({type: 'ADD_TODO', payload: inputRef.current.value});
-  e.target.closest('form').querySelector('input').value = '';
+  const inputValue = e.target.closest('form').querySelector('input').value;
+  if (inputValue !== '') {
+    dispatch({type: 'ADD_TODO', payload: inputRef.current.value});
+    e.target.closest('form').querySelector('input').value = '';
+  }
  }
 
   return (
