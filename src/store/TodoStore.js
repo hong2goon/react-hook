@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import useFetch from './hook/useFetch';
-import Header from './component/Header';
-import Form from './component/Form';
-import List from './component/List';
-import './App.scss';
+import useFetch from '../hook/useFetch';
+import Header from '../component/Header';
+import Form from '../component/Form';
+import List from '../component/List';
+import '../App.scss';
 
 export const TodoContext = React.createContext();
 
-const App = () => {
+const TodoStore = () => {
   // 상태값 정의
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState();
@@ -62,4 +62,4 @@ const App = () => {
   )
 } 
 
-export default App;
+export default TodoStore;
