@@ -1,33 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import useFetch from '../hook/useFetch';
-import Header from '../component/Header';
-import Form from '../component/Form';
-import List from '../component/List';
-import '../App.scss';
+import { todoReducer } from '../hook/Reducers';
 
 export const TodoContext = React.createContext();
 
-const TodoStore = () => {
+const TodoStore = (props) => {
   // 상태값 정의
-  const [todos, setTodos] = useState([]);
+  const [todos, dispatch] = useReducer(todoReducer, []);
+
+  const setInitData = (initData) => {
+    dispatch({type: 'SET_INIT_DATA', payload: initData})
+  }
   
   // data fetch
-  const loading = useFetch(setTodos, 'http://localhost:4000/todos');
-
-  // 함수
-  const addTodo = (newTodo) => {
-    setTodos([...todos, {'id': todos.length + 1, 'title': newTodo, 'status': 'todo'}]);
-  }
-
-  const changeTodoStatus = (id) => {
-    const updateTodos = todos.map(todo => {
-      if(todo.id === +id) {
-        todo.status === 'done' ? todo.status = 'todo' : todo.status = 'done';
-      }
-      return todo;
-    })
-    setTodos(updateTodos);
-  }
+  const loading = useFetch(setInitData, 'http://localhost:4000/todos');
 
   // 라이프사이클 (렌더링 이후)
   useEffect( 
@@ -39,13 +25,9 @@ const TodoStore = () => {
 
   return (
     <TodoContext.Provider value={
-      {todos, addTodo, loading, changeTodoStatus}
+      {todos, loading, dispatch}
     }>
-      <div className="wrap">
-        <Header />
-        <Form />
-        <List />
-      </div>
+      {props.children}
     </TodoContext.Provider>
   )
 } 
